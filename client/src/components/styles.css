@@ -1,0 +1,12 @@
+.letter-container {
+  color: grey;
+  display: inline-block;
+}
+
+.correct {
+  color: green;
+}
+
+.error {
+  color: red;
+}
