@@ -15,11 +15,10 @@ const app = express();
 // middleware
 app.use(cors());
 app.use(express.json());
-app.use("/api/v1/texts", textRouter);
 
 // login and regiter route
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/auth", authenticateUser, typingText);
+app.use("/api/v1/texts", authenticateUser, typingText);
 // error
 app.use(notFound);
 app.use(errorHandler);

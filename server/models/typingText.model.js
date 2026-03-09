@@ -22,9 +22,9 @@ const typingTextSchema = new mongoose.Schema(
       default: true,
     },
     createdBy: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Types.ObjectId,
       ref: "User",
-      default: null,
+      required: [true, "Please provide user"],
     },
   },
   {
@@ -32,9 +32,8 @@ const typingTextSchema = new mongoose.Schema(
   },
 );
 
-typingTextSchema.pre("save", function (next) {
+typingTextSchema.pre("save", function () {
   this.wordCount = this.content.trim().split(/\s+/).length;
-  next();
 });
 
 export default mongoose.model("TypingText", typingTextSchema);
