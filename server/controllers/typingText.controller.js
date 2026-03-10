@@ -49,9 +49,37 @@ const createText = async (req, res) => {
       .json({ message: "Internal Server Error", error: error.message });
   }
 };
+
 const updateText = async (req, res) => {
-  res.status(200).json({ message: "working 3" });
+  const { content, difficulty, isActive } = req.body;
+
+  if (!content && !difficulty && !isActive === undefined) {
+    return res
+      .status(400)
+      .json({ message: "Please provide at least one field to update" });
+  }
+
+  const text = await typingText.findOneAndUpdate(
+    {
+      _id: req.params.id,
+      createdBy: req.user.userId,
+    },
+    req.body,
+    {
+      new: true,
+      runValidators: true,
+    },
+  );
+
+  if (!text) {
+    return res.status(404).json({
+      message: "Text not found",
+    });
+  }
+
+  res.status(200).json({ message: "Text updated successfully", text });
 };
+
 const deleteText = async (req, res) => {
   const text = await typingText.findOneAndDelete({
     _id: req.params.id,
