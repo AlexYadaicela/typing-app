@@ -3,6 +3,8 @@ import StatusCodes from "http-status-codes";
 
 const getAllTexts = async (req, res) => {
   try {
+    console.log(req.user.userId);
+
     const texts = await typingText
       .find({
         isActive: true,
@@ -19,7 +21,17 @@ const getAllTexts = async (req, res) => {
 };
 
 const getTextById = async (req, res) => {
-  res.status(200).json({ message: "working 1" });
+  const text = await typingText.findOne({
+    _id: req.params.id,
+    createdBy: req.user.userId,
+  });
+
+  if (!text) {
+    return res.status(500).json({
+      message: "No text found",
+    });
+  }
+  res.status(StatusCodes.OK).json({ result: text });
 };
 
 const createText = async (req, res) => {

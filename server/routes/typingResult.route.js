@@ -8,8 +8,8 @@ import {
 
 const router = express.Router();
 
-router.post("/", saveResult);
-router.get("/user", getUserResults);
-router.get("/:id", getResultById);
+router.route("/").post(saveResult);
+router.route("/user").get(getUserResults);
+router.route("/:id").get(getResultById);
 
 export default router;
