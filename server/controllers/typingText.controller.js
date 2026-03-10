@@ -53,7 +53,16 @@ const updateText = async (req, res) => {
   res.status(200).json({ message: "working 3" });
 };
 const deleteText = async (req, res) => {
-  res.status(200).json({ message: "working 4" });
+  const text = await typingText.findOneAndDelete({
+    _id: req.params.id,
+    createdBy: req.user.userId,
+  });
+
+  if (!text) {
+    return res.status(404).json({ message: "Text not found" });
+  }
+
+  res.status(200).json({ message: "Text deleted successfully" });
 };
 
 export { getAllTexts, getTextById, createText, updateText, deleteText };
