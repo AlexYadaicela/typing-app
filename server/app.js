@@ -1,10 +1,13 @@
 import "dotenv/config";
 
 import express from "express";
-import textRouter from "./routes/texts.js";
 import connectDB from "./db/connection.js";
 import notFound from "./middleware/not-found.js";
 import errorHandler from "./middleware/error-handler.js";
+import authRouter from "./routes/auth.route.js";
+import authenticateUser from "./middleware/auth.middleware.js";
+import typingTextRoute from "./routes/typingText.route.js";
+import typingResultRoute from "./routes/typingResult.route.js";
 import cors from "cors";
 
 const app = express();
@@ -12,9 +15,13 @@ const app = express();
 // middleware
 app.use(cors());
 app.use(express.json());
-app.use("/api/v1/texts", textRouter);
 
-// text route
+// login and regiter route
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/texts", authenticateUser, typingTextRoute);
+app.use("/api/v1/result", authenticateUser, typingResultRoute);
+
+// error
 app.use(notFound);
 app.use(errorHandler);
 
