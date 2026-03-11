@@ -36,6 +36,10 @@ const Dashboard = () => {
     fetchTexts();
   }, []);
 
+  const handleLogout = () => {
+    logoutUser();
+    navigate("/login");
+  };
   const handleDelete = async (id) => {
     const confirm = window.confirm(
       "Are you sure you want to delete this text?",
@@ -61,7 +65,7 @@ const Dashboard = () => {
       {/* header */}
       <div>
         <h1>Welcome, {user?.username}</h1>
-        {/* <button onClick={handleLogout}>Logout</button> */}
+        <button onClick={handleLogout}>Logout</button>
       </div>
 
       {error && <p>{error}</p>}
