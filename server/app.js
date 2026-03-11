@@ -19,7 +19,7 @@ app.use(express.json());
 // login and regiter route
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/texts", authenticateUser, typingTextRoute);
-app.use("/api/v1/result", authenticateUser, typingResultRoute);
+app.use("/api/v1/results", authenticateUser, typingResultRoute);
 
 // error
 app.use(notFound);

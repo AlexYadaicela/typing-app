@@ -42,12 +42,6 @@ const createText = async (req, res) => {
     createdBy: req.user.userId,
   });
   res.status(201).json(text);
-  // try {
-  // } catch (error) {
-  //   res
-  //     .status(500)
-  //     .json({ message: error.message, error: "Internal Server Error" });
-  // }
 };
 
 const updateText = async (req, res) => {
