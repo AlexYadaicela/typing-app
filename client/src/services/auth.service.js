@@ -1,6 +1,4 @@
-const BASE_URL = "http://localhost:3000/api/v1/auth";
-
-// const getToken = () => localStorage.getItem("token");
+const BASE_URL = `${import.meta.env.API_URL}/api/v1`;
 
 export const registerUser = async (username, email, password) => {
   const res = await fetch(`${BASE_URL}/register`, {
