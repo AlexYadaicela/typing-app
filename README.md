@@ -15,9 +15,9 @@ git clone https://github.com/AlexYadaicela/typing-app.git
 
 ## Create a .env file in the root of the server directory
 
-`MONGO_URI = <MONGODB_CONNECTION_STRING>`
-`JWT_SECRET = <YOUR_SECRET_KEY> `
-`JWT_LIFETIME = <ex. 7d>`
+- `MONGO_URI = <MONGODB_CONNECTION_STRING>`
+- `JWT_SECRET = <YOUR_SECRET_KEY> `
+- `JWT_LIFETIME = <ex. 7d>`
 
 ## Create a .env file in the root of the client directory
 
