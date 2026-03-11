@@ -13,8 +13,9 @@ import cors from "cors";
 const app = express();
 
 // middleware
-app.use(cors());
+app.set("trust proxy", 1);
 app.use(express.json());
+app.use(cors());
 
 // login and regiter route
 app.use("/api/v1/auth", authRouter);

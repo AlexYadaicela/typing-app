@@ -1,7 +1,8 @@
-const BASE_URL = `${import.meta.env.API_URL}/api/v1/texts`;
+const BASE_URL = `${import.meta.env.VITE_API_URL}/api/v1/texts`;
 
+alert(BASE_URL);
 export const getAllTexts = async (token) => {
-  const res = await fetch(BASE_URL, {
+  const res = await fetch(`${BASE_URL}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
