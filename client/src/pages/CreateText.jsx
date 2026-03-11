@@ -1,11 +1,9 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { getTextById, updateText } from "../services/text.service";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { createText } from "../services/text.service.js";
 
-const EditText = () => {
+const CreateText = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
-
   const [formData, setFormData] = useState({
     content: "",
     difficulty: "medium",
@@ -14,31 +12,6 @@ const EditText = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
-  const [fetching, setFetching] = useState(true);
-
-  useEffect(() => {
-    const fetchText = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          navigate("/login");
-          return;
-        }
-        const data = await getTextById(token, id);
-        console.log("data", data);
-
-        setFormData({
-          content: data.result.content,
-          difficulty: data.result.difficulty,
-        });
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setFetching(false);
-      }
-    };
-    fetchText();
-  }, [id]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -48,6 +21,7 @@ const EditText = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setError("");
     setSuccess("");
 
@@ -59,9 +33,12 @@ const EditText = () => {
 
     try {
       const token = localStorage.getItem("token");
-      await updateText(token, id, formData);
-      setSuccess("Text updated successfully");
-      setTimeout(() => navigate("/dashboard"), 1500);
+      await createText(token, formData);
+      setSuccess("Text create successfully");
+
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 1500);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -69,11 +46,9 @@ const EditText = () => {
     }
   };
 
-  if (fetching) return <p>Loading...</p>;
-
   return (
     <div>
-      <h1>Edit Text</h1>
+      <h1>Create Text</h1>
 
       {error && <p>{error}</p>}
       {success && <p>{success}</p>}
@@ -119,7 +94,7 @@ const EditText = () => {
         </select>
 
         <button type="submit" disabled={loading}>
-          {loading ? "Updating..." : "Update Text"}
+          {loading ? "Creating..." : "Create Text"}
         </button>
 
         <button type="button" onClick={() => navigate("/dashboard")}>
@@ -130,4 +105,4 @@ const EditText = () => {
   );
 };
 
-export default EditText;
+export default CreateText;

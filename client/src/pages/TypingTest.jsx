@@ -1,5 +1,5 @@
 const TypingTest = () => {
-  <p>you can start practicing</p>;
+  <p>reutrn typing text</p>;
 };
 
 export default TypingTest;
