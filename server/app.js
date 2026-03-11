@@ -3,7 +3,7 @@ import "dotenv/config";
 import express from "express";
 import connectDB from "./db/connection.js";
 import notFound from "./middleware/not-found.js";
-import errorHandler from "./middleware/error-handler.js";
+import errorHandler from "./middleware/errorHandler.middleware.js";
 import authRouter from "./routes/auth.route.js";
 import authenticateUser from "./middleware/auth.middleware.js";
 import typingTextRoute from "./routes/typingText.route.js";
@@ -19,7 +19,7 @@ app.use(express.json());
 // login and regiter route
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/texts", authenticateUser, typingTextRoute);
-app.use("/api/v1/result", authenticateUser, typingResultRoute);
+app.use("/api/v1/results", authenticateUser, typingResultRoute);
 
 // error
 app.use(notFound);

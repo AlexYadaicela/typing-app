@@ -6,8 +6,8 @@ const typingTextSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide the text"],
       trim: true,
-      minlength: 10,
-      maxlength: 1000,
+      minlength: [10, "Content must be at least 10 characters"],
+      maxlength: [1000, "Content must not exceed 1000 characters"],
     },
     difficulty: {
       type: String,
