@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000/api/v1/results";
+const BASE_URL = `${import.meta.env.API_URL}/api/v1/results`;
 
 export const saveResult = async (token, resultData) => {
   const res = await fetch(BASE_URL, {

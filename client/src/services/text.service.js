@@ -1,7 +1,7 @@
-const BASE_URL = "http://localhost:3000/api/v1";
+const BASE_URL = `${import.meta.env.API_URL}/api/v1/texts`;
 
 export const getAllTexts = async (token) => {
-  const res = await fetch(`${BASE_URL}/texts`, {
+  const res = await fetch(BASE_URL, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -19,7 +19,7 @@ export const getAllTexts = async (token) => {
 };
 
 export const deleteText = async (token, id) => {
-  const res = await fetch(`${BASE_URL}/texts/${id}`, {
+  const res = await fetch(`${BASE_URL}/${id}`, {
     method: "DELETE",
     headers: {
       "Content-type": "application/json",
@@ -36,7 +36,7 @@ export const deleteText = async (token, id) => {
 };
 
 export const createText = async (token, textData) => {
-  const res = await fetch(`${BASE_URL}/texts`, {
+  const res = await fetch(BASE_URL, {
     method: "POST",
     headers: {
       "Content-type": "application/json",
@@ -55,7 +55,7 @@ export const createText = async (token, textData) => {
 };
 
 export const getTextById = async (token, id) => {
-  const res = await fetch(`${BASE_URL}/texts/${id}`, {
+  const res = await fetch(`${BASE_URL}/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -72,7 +72,7 @@ export const getTextById = async (token, id) => {
 };
 
 export const updateText = async (token, id, textData) => {
-  const res = await fetch(`${BASE_URL}/texts/${id}`, {
+  const res = await fetch(`${BASE_URL}/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
