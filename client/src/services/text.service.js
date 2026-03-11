@@ -1,6 +1,5 @@
 const BASE_URL = `${import.meta.env.VITE_API_URL}/api/v1/texts`;
 
-alert(BASE_URL);
 export const getAllTexts = async (token) => {
   const res = await fetch(`${BASE_URL}`, {
     method: "GET",
