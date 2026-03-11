@@ -1,16 +1,14 @@
-import typingText from "../models/typingtext.model.js";
+import TypingText from "../models/typingText.model.js";
 import StatusCodes from "http-status-codes";
 
 const getAllTexts = async (req, res) => {
   try {
     console.log(req.user.userId);
 
-    const texts = await typingText
-      .find({
-        isActive: true,
-        createdBy: req.user.userId,
-      })
-      .sort("createdAt");
+    const texts = await TypingText.find({
+      isActive: true,
+      createdBy: req.user.userId,
+    }).sort("createdAt");
 
     res.status(StatusCodes.OK).json({ texts, count: texts.length });
   } catch (error) {
@@ -21,7 +19,7 @@ const getAllTexts = async (req, res) => {
 };
 
 const getTextById = async (req, res) => {
-  const text = await typingText.findOne({
+  const text = await TypingText.findOne({
     _id: req.params.id,
     createdBy: req.user.userId,
   });
@@ -36,7 +34,7 @@ const getTextById = async (req, res) => {
 
 const createText = async (req, res) => {
   const { content, difficulty } = req.body;
-  const text = await typingText.create({
+  const text = await TypingText.create({
     content,
     difficulty,
     createdBy: req.user.userId,
@@ -53,7 +51,7 @@ const updateText = async (req, res) => {
       .json({ message: "Please provide at least one field to update" });
   }
 
-  const text = await typingText.findOneAndUpdate(
+  const text = await TypingText.findOneAndUpdate(
     {
       _id: req.params.id,
       createdBy: req.user.userId,
@@ -75,7 +73,7 @@ const updateText = async (req, res) => {
 };
 
 const deleteText = async (req, res) => {
-  const text = await typingText.findOneAndDelete({
+  const text = await TypingText.findOneAndDelete({
     _id: req.params.id,
     createdBy: req.user.userId,
   });
