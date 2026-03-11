@@ -22,7 +22,8 @@ const Register = () => {
     setSuccess("");
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setError("");
     setSuccess("");
     const { username, email, password } = formData;

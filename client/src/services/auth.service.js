@@ -3,7 +3,6 @@ const BASE_URL = "http://localhost:3000/api/v1/auth";
 // const getToken = () => localStorage.getItem("token");
 
 export const registerUser = async (username, email, password) => {
-  console.log(BASE_URL);
   const res = await fetch(`${BASE_URL}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -26,12 +25,36 @@ export const loginUser = async (email, password) => {
     body: JSON.stringify({ email, password }),
   });
 
-  const text = await res.text();
-  const data = JSON.parse(text);
+  const data = await res.json();
 
   if (!res.ok) {
     throw new Error(data.message || "login failed");
   }
 
   return data;
+};
+
+export const getCurrentUser = () => {
+  const token = localStorage.getItem("token");
+  if (!token) return null;
+
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    if (payload.exp * 1000 < Date.now()) {
+      localStorage.removeItem("token");
+      return null;
+    }
+
+    return {
+      id: payload.userId,
+      username: payload.username,
+    };
+  } catch (err) {
+    localStorage.removeItem("token");
+    return null;
+  }
+};
+
+export const logoutUser = () => {
+  return "logging user out";
 };
