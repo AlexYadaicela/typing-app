@@ -35,19 +35,19 @@ const getTextById = async (req, res) => {
 };
 
 const createText = async (req, res) => {
-  try {
-    const { content, difficulty } = req.body;
-    const text = await typingText.create({
-      content,
-      difficulty,
-      createdBy: req.user.userId,
-    });
-    res.status(201).json(text);
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Internal Server Error", error: error.message });
-  }
+  const { content, difficulty } = req.body;
+  const text = await typingText.create({
+    content,
+    difficulty,
+    createdBy: req.user.userId,
+  });
+  res.status(201).json(text);
+  // try {
+  // } catch (error) {
+  //   res
+  //     .status(500)
+  //     .json({ message: error.message, error: "Internal Server Error" });
+  // }
 };
 
 const updateText = async (req, res) => {
@@ -77,7 +77,7 @@ const updateText = async (req, res) => {
     });
   }
 
-  res.status(200).json({ message: "Text updated successfully", text });
+  res.status(200).json({ message: "Text updated successfully" });
 };
 
 const deleteText = async (req, res) => {
