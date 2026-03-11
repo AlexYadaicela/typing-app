@@ -1,17 +1,18 @@
 ## Clone the Repository
 
-git clone https://github.com/AlexYadaicela/typing-app.git
+`git clone` https://github.com/AlexYadaicela/typing-app.git
 
 ## Install dependencies for both the frontend and the backend
 
 1. for the Backend
 
-`cd server`
-`npm install `
+- `cd server`
+- `npm install `
 
 2. for the Frontend
-   `cd client`
-   `npm install`
+
+- `cd client`
+- `npm install`
 
 ## Create a .env file in the root of the server directory
 
