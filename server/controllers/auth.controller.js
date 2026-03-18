@@ -2,6 +2,9 @@ import User from "../models/user.model.js";
 import StatusCodes from "http-status-codes";
 
 const register = async (req, res) => {
+  console.log("entering register");
+  console.log("body:", req.body);
+
   try {
     const { username, email, password } = req.body;
 
