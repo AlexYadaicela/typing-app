@@ -1,5 +1,5 @@
 import { multiply } from "../utils/multiply.util.js";
-import getChai from "../utils/get_chai.util.js";
+import getChai from "../utils/getChai.util.js";
 
 describe("testing multiply", () => {
   it("should give 7 * 6 is 42", async () => {
