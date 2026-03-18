@@ -6,16 +6,17 @@ import EditText from "./pages/EditText.jsx";
 import TypingTest from "./pages/TypingTest.jsx";
 import Results from "./pages/Results.jsx";
 
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, Navigate } from "react-router-dom";
 
 function App() {
   return (
     <div>
       <nav>
-        <Link to="register">Register</Link>
-        <Link to="login">Login</Link>
+        <Link to="/register">Register</Link>
+        <Link to="/login">Login</Link>
       </nav>
       <Routes>
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
