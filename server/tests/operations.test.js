@@ -1,5 +1,5 @@
 import app from "../app.js";
-import { seed_db, testUserPassword } from "../utils/seedDB.util.js"; // 👈 fixed extension
+import { seed_db, testUserPassword } from "../utils/seedDB.util.js";
 import getChai from "../utils/getChai.util.js";
 import mongoose from "mongoose";
 import connectDB from "../db/connection.js";
@@ -59,10 +59,6 @@ describe("tests for typing text CRUD", function () {
         content: "This is a test typing text again",
         difficulty: "easy",
       });
-
-    // console.log("login status:", res.status);
-    // console.log("login body:", res.body);
-    // console.log("text:", res.text);
 
     expect(res).to.have.status(201);
     expect(res.body).to.have.property("content");

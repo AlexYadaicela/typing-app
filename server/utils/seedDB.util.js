@@ -4,7 +4,7 @@ import User from "../models/user.model.js";
 import { fakerEN_US } from "@faker-js/faker";
 import mongoose from "mongoose";
 
-const testUserPassword = fakerEN_US.internet.password(); // 👈 fixed typo
+const testUserPassword = fakerEN_US.internet.password();
 
 const factory = {
   build: (type, overrides = {}) => {
